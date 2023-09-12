@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
@@ -17,27 +19,40 @@ public class Employee {
 	private int employeeId;
 	
 	@Column(name = "employeename")
+	@NotEmpty(message="Employee Name is a required field")
 	private String employeeName;
 	
-	
-	
 	@Column(name = "designation")
+	@NotEmpty(message="Designation is a required field")
 	private String designation;
 	
 	@Column(name = "department")
+	@NotEmpty(message="Designation is a required field")
 	private String department;
 	
-	@Column(name = "gender", nullable = false)
-	private char gender;
+	@Column(name = "gender", nullable = false, length=1)
+	@NotNull(message="Gender is a required field")
+	private String gender;
 	
+	@Column(name="password")
+	@NotNull(message="Password is a required field")
+	private String password;
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Column(name = "dateofjoining")
+	@NotNull(message="Date of joining is a required field")
 	private Date dateofjoining;
 	
 	@Column(name = "dateofbirth")
+	@NotNull(message="Date of birth is a required field")
 	private Date dateofbirth;
-	
-	@Column(name="password")
-	private String password;
 	
 	@OneToMany(mappedBy = "employee")
 	private List<EmployeeIssueDetails> employeeissue;
@@ -77,13 +92,12 @@ public class Employee {
 		this.department = department;
 	}
 
-	
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -101,13 +115,5 @@ public class Employee {
 
 	public void setDateofbirth(Date dateofbirth) {
 		this.dateofbirth = dateofbirth;
-	}
-	public String getPassword()
-	{
-		return password;
-	}
-	public void setPassword(String password)
-	{
-		this.password=password;
 	}
 }

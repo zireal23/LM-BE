@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +15,7 @@ import com.example.demo.service.EmployeeService;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
+@Validated
 public class EmployeeController{
 	@Autowired
 	private EmployeeService employeeService;
@@ -22,7 +26,7 @@ public class EmployeeController{
 	}
 	
 	@PostMapping("/saveEmployee")
-	public String saveEmployee(@RequestBody Employee e) {
+	public String saveEmployee(@Valid @RequestBody Employee e) {
 		String result = "";
 		result = employeeService.saveEmployee(e);
 		System.out.println(e.getEmployeeName());

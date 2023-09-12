@@ -1,17 +1,28 @@
 package com.example.demo.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class EmployeeCardDetails implements Serializable {
-	@EmbeddedId
+public class EmployeeCardDetails{
+	
+	@Id
+	@Column(name="employee_card_details_id")
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
