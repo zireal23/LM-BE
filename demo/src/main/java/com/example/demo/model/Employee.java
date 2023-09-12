@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
@@ -17,24 +20,27 @@ public class Employee {
 	private int employeeId;
 	
 	@Column(name = "employeename")
+	@NotEmpty(message="Employee Name is a required field")
 	private String employeeName;
 	
-	@Column(name = "employeefullname")
-	private String employeeFullName;
-	
 	@Column(name = "designation")
+	@NotEmpty(message="Designation is a required field")
 	private String designation;
 	
 	@Column(name = "department")
+	@NotEmpty(message="Designation is a required field")
 	private String department;
 	
-	@Column(name = "gender", nullable = false)
-	private char gender;
+	@Column(name = "gender", nullable = false, length=1)
+	@NotNull(message="Gender is a required field")
+	private String gender;
 	
 	@Column(name = "dateofjoining")
+	@NotNull(message="Date of joining is a required field")
 	private Date dateofjoining;
 	
 	@Column(name = "dateofbirth")
+	@NotNull(message="Date of birth is a required field")
 	private Date dateofbirth;
 	
 	@OneToMany(mappedBy = "employee")
@@ -75,19 +81,12 @@ public class Employee {
 		this.department = department;
 	}
 
-	public String getEmployeeFullName() {
-		return employeeFullName;
-	}
 
-	public void setEmployeeFullName(String employeeFullName) {
-		this.employeeFullName = employeeFullName;
-	}
-
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
