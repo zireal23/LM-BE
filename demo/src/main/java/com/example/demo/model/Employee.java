@@ -32,7 +32,7 @@ public class Employee {
 	private String department;
 	
 	@Column(name = "gender", nullable = false, length=1)
-	@NotNull(message="Gender is a required field")
+	@NotEmpty(message="Gender is a required field")
 	private String gender;
 	
 	@Column(name = "dateofjoining")
