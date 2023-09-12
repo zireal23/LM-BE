@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +31,7 @@ public class Employee {
 	private String department;
 	
 	@Column(name = "gender", nullable = false, length=1)
-	@NotEmpty(message="Gender is a required field")
+	@NotNull(message="Gender is a required field")
 	private String gender;
 	
 	@Column(name = "dateofjoining")

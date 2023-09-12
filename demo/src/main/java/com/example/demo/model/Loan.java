@@ -18,17 +18,19 @@ public class Loan {
 	private int loanId;
 	@Column(name = "loan_type", length = 30, nullable = false)
 	private String loanType;
-	@Column(name = "duration", length = 10, nullable = false)
+	@Column(name = "duration", nullable = false)
 	private int duration;
 	@Column(name = "card_issue_date", length = 10, nullable = false)
-	private Date issue_date;
+	private Date issueDate;
 	
 	@OneToMany(mappedBy = "loan")
 	private List<EmployeeCardDetails> employeecarddetails;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "employee_id")
+//	private Employee employee;
+//	
+	
 	
 	public int getLoanId() {
 		return loanId;
@@ -42,8 +44,24 @@ public class Loan {
 		return loanType;
 	}
 
+	public int getDuration()
+	{
+		return duration;
+	}
+	public void setDuration(int duration)
+	{
+		this.duration=duration;
+	}
 	public void setLoanType(String loanType) {
 		this.loanType = loanType;
+	}
+	public Date getIssueDate()
+	{
+		return issueDate;
+	}
+	public void setIssueDate(Date issueDate)
+	{
+		this.issueDate=issueDate;
 	}
 
 }
