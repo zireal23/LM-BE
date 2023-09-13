@@ -46,6 +46,11 @@ public class LoanController{
 		return loanService.getAllLoans();
 	}
 	
+	@GetMapping("/distinctLoanTypes")
+	public List<String> getDistinctLoanTypes (){
+		return loanService.getDistinctLoanTypes();
+	}
+	
 	@GetMapping("/fetchLoanById/{loanId}")
 	public Loan getLoanById(@PathVariable("loanId")  int lno)
 	{
