@@ -5,54 +5,38 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
 	@Id
-	@GeneratedValue
-	@Column(name = "employee_id", nullable = false)
-	private int employeeId;
+	@Column(name = "employeeid")
+	private String employeeId;
 	
 	@Column(name = "employeename")
-	@NotEmpty(message="Employee Name is a required field")
 	private String employeeName;
-	
+		
 	@Column(name = "designation")
-	@NotEmpty(message="Designation is a required field")
 	private String designation;
 	
 	@Column(name = "department")
-	@NotEmpty(message="Designation is a required field")
 	private String department;
 	
-	@Column(name = "gender", nullable = false, length=1)
-	@NotNull(message="Gender is a required field")
-	private String gender;
+	@Column(name = "gender", nullable = false)
+	private char gender;
 	
-	@Column(name="password")
-	@NotNull(message="Password is a required field")
-	private String password;
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	@Column(name = "dateofjoining")
-	@NotNull(message="Date of joining is a required field")
 	private Date dateofjoining;
 	
 	@Column(name = "dateofbirth")
-	@NotNull(message="Date of birth is a required field")
 	private Date dateofbirth;
+	
+//	@Column(name = "username")
+//	private String username;
+	
+	@Column(name = "password")
+	private String password;
 	
 	@OneToMany(mappedBy = "employee")
 	private List<EmployeeIssueDetails> employeeissue;
@@ -60,11 +44,11 @@ public class Employee {
 	@OneToMany(mappedBy = "employee")
 	private List<EmployeeCardDetails> employeecard;
 
-	public int getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -92,12 +76,27 @@ public class Employee {
 		this.department = department;
 	}
 
+//	public String getUsername() {
+//		return username;
+//	}
+//
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
+	
+	public String getPassword() {
+		return password;
+	}
 
-	public String getGender() {
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public char getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(char gender) {
 		this.gender = gender;
 	}
 
