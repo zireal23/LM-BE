@@ -44,6 +44,9 @@ public class LoanService {
 		
 		return loanRepo.findById(lno).get();
 	}
+	public List<String> getDistinctLoanTypes(){
+		return loanRepo.getDistinctLoanTypes();
+	}
 	
 }
 
