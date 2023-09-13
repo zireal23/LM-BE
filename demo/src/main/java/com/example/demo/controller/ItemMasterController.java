@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Item;
@@ -46,10 +48,22 @@ public class ItemMasterController{
 		return itemMasterService.getAllItems();
 	}
 	
+	@GetMapping("/fetchItemMake")
+	@ResponseBody
+	public List<String> getItemMake(@RequestParam String category){
+		return itemMasterService.getItemMakeFromCategory(category);
+	}
+	
 	@GetMapping("/fetchItemById/{ItemId}")
 	public Item getItemById(@PathVariable("itemId")  int ino)
 	{
 		return itemMasterService.getItemById(ino);
+	}
+	
+	@GetMapping("/fetchItemsFromCategoryAndMake")
+	@ResponseBody
+	public List<Item> getItems(@RequestParam String category, @RequestParam String make){
+		return itemMasterService.getItemFromCategoryAndMake(category, make);
 	}
 //    @PutMapping("/updateStudent/{rno}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("rno") int regno, @Valid @RequestBody Student stud) {

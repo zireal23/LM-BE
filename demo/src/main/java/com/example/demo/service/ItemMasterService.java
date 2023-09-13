@@ -46,6 +46,12 @@ public class ItemMasterService {
 		
 		return itemMasterRepo.findById(ino).get();
 	}
+	public List<String> getItemMakeFromCategory(String category){
+		return itemMasterRepo.getItemMakeFromCategory(category);
+	}
+	public List<Item> getItemFromCategoryAndMake(String category, String make){
+		return itemMasterRepo.getItemFromCategoryAndMake(category, make);
+	}
 	
 }
 
