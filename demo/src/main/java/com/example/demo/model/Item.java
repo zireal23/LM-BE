@@ -33,7 +33,7 @@ public class Item {
 	public int getItemId() {
 		return itemId;
 	}
-	public void setIssueId(int itemId) {
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 	public String getItemDescription() {
@@ -47,6 +47,14 @@ public class Item {
 	}
 	public void setItemMake(String itemMake) {
 		this.itemMake = itemMake;
+	}
+	public char getItemStatus()
+	{
+		return itemStatus;
+	}
+	public void setItemStatus(char itemStatus)
+	{
+		this.itemStatus=itemStatus;
 	}
 	public String getItemCategory() {
 		return itemCategory;
