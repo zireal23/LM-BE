@@ -48,5 +48,9 @@ public class LoanService {
 		return loanRepo.getDistinctLoanTypes();
 	}
 	
+	public String getLoanIDFromCategory(String category) {
+		return loanRepo.getLoanIDFromLoanType(category);
+	}
+	
 }
 

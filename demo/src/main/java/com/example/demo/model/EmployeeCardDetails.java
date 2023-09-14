@@ -40,6 +40,15 @@ public class EmployeeCardDetails{
 	}
 
 	private Date card_issue_date;
+
+	public EmployeeCardDetails(Employee employee, Loan loan, Date card_issue_date) {
+		super();
+		this.employee = employee;
+		this.loan = loan;
+		this.card_issue_date = card_issue_date;
+	}
+
+	
 	
 	
 }

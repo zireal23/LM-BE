@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import java.sql.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,8 +20,7 @@ public class Loan {
 	private String loanType;
 	@Column(name = "duration", nullable = false)
 	private int duration;
-	@Column(name = "card_issue_date", length = 10, nullable = false)
-	private Date issueDate;
+	
 	
 	@OneToMany(mappedBy = "loan")
 	private List<EmployeeCardDetails> employeecarddetails;
@@ -30,6 +29,7 @@ public class Loan {
 //	@JoinColumn(name = "employee_id")
 //	private Employee employee;
 //	
+	
 	
 	
 	public int getLoanId() {
@@ -55,13 +55,6 @@ public class Loan {
 	public void setLoanType(String loanType) {
 		this.loanType = loanType;
 	}
-	public Date getIssueDate()
-	{
-		return issueDate;
-	}
-	public void setIssueDate(Date issueDate)
-	{
-		this.issueDate=issueDate;
-	}
+
 
 }

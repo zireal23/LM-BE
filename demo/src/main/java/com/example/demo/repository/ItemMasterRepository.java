@@ -11,7 +11,7 @@ import com.example.demo.model.Item;
 public interface ItemMasterRepository extends JpaRepository<Item, Integer> {
 	
 	@Query("SELECT DISTINCT i.itemMake FROM Item i WHERE i.itemCategory=?1")
-	public List<String> getItemMakeFromCategory(String categorty);
+	public List<String> getItemMakeFromCategory(String category);
 	
 	@Query("SELECT i FROM Item i WHERE i.itemCategory=?1 AND i.itemMake=?2")
 	public List<Item> getItemFromCategoryAndMake(String category, String make);

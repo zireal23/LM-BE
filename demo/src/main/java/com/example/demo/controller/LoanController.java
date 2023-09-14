@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.demo.model.EmployeeCardDetails;
 import com.example.demo.model.Loan;
-
+import com.example.demo.model.LoanApply;
 import com.example.demo.service.LoanService;
 
 @RestController
@@ -40,6 +43,17 @@ public class LoanController{
 		
 		return result;
 	}
+	
+	@PutMapping("/saveEmployeeLoan")
+	public String saveEmployeeLoan(@RequestBody LoanApply application) {
+		String result = "";
+		String loanID = loanService.getLoanIDFromCategory(application.getItemCategory());
+		LocalDate issueDate = LocalDate.now();
+		
+		return result;
+	}
+	
+	
 	@GetMapping("/fetchLoans")
 	public List<Loan> getAllLoans()
 	{
@@ -56,6 +70,7 @@ public class LoanController{
 	{
 		return loanService.getLoanById(lno);
 	}
+	
 //    @PutMapping("/updateStudent/{rno}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("rno") int regno, @Valid @RequestBody Student stud) {
 //
