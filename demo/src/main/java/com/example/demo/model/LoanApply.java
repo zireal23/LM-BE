@@ -9,7 +9,7 @@ public class LoanApply {
 	
 	private int itemValuation;
 	
-	private String itemMakeString;
+	private String itemMake;
 
 	public String getEmployeeID() {
 		return employeeID;
@@ -43,13 +43,14 @@ public class LoanApply {
 		this.itemValuation = itemValuation;
 	}
 
-	public String getItemMakeString() {
-		return itemMakeString;
+	public String getItemMake() {
+		return itemMake;
 	}
 
-	public void setItemMakeString(String itemMakeString) {
-		this.itemMakeString = itemMakeString;
+	public void setItemMake(String itemMake) {
+		this.itemMake = itemMake;
 	}
+
 	
 	
 }

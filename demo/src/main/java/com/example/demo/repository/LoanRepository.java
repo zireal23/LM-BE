@@ -11,7 +11,7 @@ public interface LoanRepository extends JpaRepository<Loan, Integer> {
 	@Query("Select l.loanType from Loan l")
 	public List<String> getDistinctLoanTypes();
 	
-	@Query("Select l.loanId from Loan l where l.loanType=?1")
-	public String getLoanIDFromLoanType(String category);
+	@Query("Select l from Loan l where l.loanType=?1")
+	public Loan getLoanFromLoanType(String category);
 }
 

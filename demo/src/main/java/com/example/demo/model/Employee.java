@@ -34,11 +34,13 @@ public class Employee {
 
 	@Column(name = "dateofjoining")
 	@NotNull(message="Date of joining is a required field")
+	//Need to get rid of the legacy java.sql.date type
 	private Date dateofjoining;
 	
 
 	@Column(name = "dateofbirth")
 	@NotNull(message="Date of birth is a required field")
+	//Need to get rid of the legacy java.sql.date type
 	private Date dateofbirth;
 
 //	@Column(name = "username")

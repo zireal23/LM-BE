@@ -4,15 +4,18 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class EmployeeCardDetails{
-	
+public class EmployeeCardDetails {
+
 	@Id
-	@Column(name="employee_card_details_id")
+	@Column(name = "employee_card_details_id")
+	@GeneratedValue // This generates an auto-incremented primary key
 	private int id;
 
 	public int getId() {
@@ -26,11 +29,27 @@ public class EmployeeCardDetails{
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
-	
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "loan_id")
 	private Loan loan;
-	
+
 	public Date getCard_issue_date() {
 		return card_issue_date;
 	}
@@ -41,14 +60,4 @@ public class EmployeeCardDetails{
 
 	private Date card_issue_date;
 
-	public EmployeeCardDetails(Employee employee, Loan loan, Date card_issue_date) {
-		super();
-		this.employee = employee;
-		this.loan = loan;
-		this.card_issue_date = card_issue_date;
-	}
-
-	
-	
-	
 }

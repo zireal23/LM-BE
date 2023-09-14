@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.EmployeeCardDetails;
 import com.example.demo.model.Loan;
 import com.example.demo.model.LoanApply;
+import com.example.demo.service.EmployeeLoanService;
 import com.example.demo.service.LoanService;
 
 @RestController
@@ -23,7 +24,11 @@ import com.example.demo.service.LoanService;
 public class LoanController{
 	@Autowired
 	private LoanService loanService;
-
+	
+	@Autowired
+	private EmployeeLoanService employeeLoanService;
+	
+	
 	@GetMapping("/showloan")
 	public String showMessage() {
 		return "Welcome";
@@ -44,13 +49,10 @@ public class LoanController{
 		return result;
 	}
 	
-	@PutMapping("/saveEmployeeLoan")
+	@PostMapping("/saveEmployeeLoan")
 	public String saveEmployeeLoan(@RequestBody LoanApply application) {
-		String result = "";
-		String loanID = loanService.getLoanIDFromCategory(application.getItemCategory());
-		LocalDate issueDate = LocalDate.now();
-		
-		return result;
+		System.out.println("Put mapping here");
+		return employeeLoanService.insertLoanApplicationData(application);
 	}
 	
 	
