@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.demo.model.Item;
+import com.example.demo.model.Loan;
 
 
 public interface ItemMasterRepository extends JpaRepository<Item, Integer> {
@@ -27,5 +28,10 @@ public interface ItemMasterRepository extends JpaRepository<Item, Integer> {
             @Param("itemDescription") String itemDescription,
             @Param("itemValuation") int itemValuation,
             @Param("itemMake") String itemMake);
+	 
+	 @Query("SELECT distinct i FROM Item i " +
+	           "INNER JOIN EmployeeIssueDetails eid ON i.itemId = eid.item.itemId " +
+	           "WHERE eid.employee.employeeId = :employeeId")
+	    List<Item> findItemsByEmployeeId(@Param("employeeId") String employeeId);
 }
 
