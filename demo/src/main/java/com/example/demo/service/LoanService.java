@@ -39,7 +39,12 @@ public class LoanService {
 		
 		return loanRepo.findAll();
 	}
-	public  Loan getLoanById(int lno)
+	
+	public List<Loan> getAllLoansofUser(String employeeId){
+		return loanRepo.findLoansByEmployeeId(employeeId);
+	}
+	
+	public Loan getLoanById(int lno)
 	{
 		
 		return loanRepo.findById(lno).get();

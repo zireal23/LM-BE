@@ -57,9 +57,10 @@ public class LoanController{
 	
 	
 	@GetMapping("/fetchLoans")
-	public List<Loan> getAllLoans()
+	public List<Loan> getAllLoans(@RequestParam String employeeId)
 	{
-		return loanService.getAllLoans();
+		System.out.println(employeeId);
+		return loanService.getAllLoansofUser(employeeId);
 	}
 	
 	@GetMapping("/distinctLoanTypes")
