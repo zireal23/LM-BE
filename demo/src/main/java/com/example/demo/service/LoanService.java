@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Loan;
+import com.example.demo.model.UserLoan;
 import com.example.demo.repository.LoanRepository;
 @Service
 public class LoanService {
@@ -39,7 +40,12 @@ public class LoanService {
 		
 		return loanRepo.findAll();
 	}
-	public  Loan getLoanById(int lno)
+	
+	public List<UserLoan> getAllLoansofUser(String employeeId){
+		return loanRepo.findLoansByEmployeeId(employeeId);
+	}
+	
+	public Loan getLoanById(int lno)
 	{
 		
 		return loanRepo.findById(lno).get();

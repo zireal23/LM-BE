@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
 import com.example.demo.model.Loan;
 import com.example.demo.service.ItemMasterService;
 import com.example.demo.service.LoanService;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 public class ItemMasterController{
 	@Autowired
 	private ItemMasterService itemMasterService;
@@ -65,6 +66,13 @@ public class ItemMasterController{
 	public List<Item> getItems(@RequestParam String category, @RequestParam String make){
 		return itemMasterService.getItemFromCategoryAndMake(category, make);
 	}
+	
+	@GetMapping("/fetchItemsofUser")
+	public List<IssueItem> getAllItems(@RequestParam String employeeId)
+	{
+		return itemMasterService.getAllItemsofUser(employeeId);
+	}
+	
 //    @PutMapping("/updateStudent/{rno}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("rno") int regno, @Valid @RequestBody Student stud) {
 //

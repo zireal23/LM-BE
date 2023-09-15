@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-
+import com.example.demo.model.Loan;
 import com.example.demo.repository.ItemMasterRepository;
 
 @Service
@@ -53,5 +54,8 @@ public class ItemMasterService {
 		return itemMasterRepo.getItemFromCategoryAndMake(category, make);
 	}
 	
+	public List<IssueItem> getAllItemsofUser(String employeeId){
+		return itemMasterRepo.findItemsByEmployeeId(employeeId);
+	}
 }
 
