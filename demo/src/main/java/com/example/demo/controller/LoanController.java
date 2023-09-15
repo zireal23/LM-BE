@@ -51,7 +51,6 @@ public class LoanController{
 	
 	@PostMapping("/saveEmployeeLoan")
 	public String saveEmployeeLoan(@RequestBody LoanApply application) {
-		System.out.println("Put mapping here");
 		return employeeLoanService.insertLoanApplicationData(application);
 	}
 	
