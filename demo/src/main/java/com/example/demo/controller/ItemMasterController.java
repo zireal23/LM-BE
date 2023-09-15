@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
 import com.example.demo.model.Loan;
 import com.example.demo.service.ItemMasterService;
@@ -67,7 +68,7 @@ public class ItemMasterController{
 	}
 	
 	@GetMapping("/fetchItemsofUser")
-	public List<Item> getAllItems(@RequestParam String employeeId)
+	public List<IssueItem> getAllItems(@RequestParam String employeeId)
 	{
 		return itemMasterService.getAllItemsofUser(employeeId);
 	}

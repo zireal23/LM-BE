@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.EmployeeCardDetails;
 import com.example.demo.model.Loan;
 import com.example.demo.model.LoanApply;
+import com.example.demo.model.UserLoan;
 import com.example.demo.service.EmployeeLoanService;
 import com.example.demo.service.LoanService;
 
@@ -57,7 +58,7 @@ public class LoanController{
 	
 	
 	@GetMapping("/fetchLoans")
-	public List<Loan> getAllLoans(@RequestParam String employeeId)
+	public List<UserLoan> getAllLoans(@RequestParam String employeeId)
 	{
 		System.out.println(employeeId);
 		return loanService.getAllLoansofUser(employeeId);
