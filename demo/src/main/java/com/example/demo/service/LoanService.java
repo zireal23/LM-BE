@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Loan;
 import com.example.demo.model.UserLoan;
-import com.example.demo.repository.LoanRepository;
+import com.example.demo.repositoryTests.LoanRepository;
 @Service
 public class LoanService {
 	@Autowired

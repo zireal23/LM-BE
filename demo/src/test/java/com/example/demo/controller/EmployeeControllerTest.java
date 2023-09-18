@@ -1,4 +1,4 @@
-package com.example.demo.test;
+package com.example.demo.controller;
 
 
 import com.example.demo.controller.EmployeeController;
@@ -70,7 +70,6 @@ public class EmployeeControllerTest {
         // Mock the service behavior
         //Mockito.when(employeeService.saveEmployee(employee)).thenReturn("User Saved");
         Mockito.when(employeeService.saveEmployee(Mockito.any(Employee.class))).thenReturn("User Saved");
-
         // Perform the POST request to save the employee
         mockMvc.perform(MockMvcRequestBuilders.post("/saveEmployee")
                 .contentType(MediaType.APPLICATION_JSON)

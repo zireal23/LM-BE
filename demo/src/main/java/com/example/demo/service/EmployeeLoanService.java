@@ -15,11 +15,11 @@ import com.example.demo.model.EmployeeIssueDetails;
 import com.example.demo.model.Item;
 import com.example.demo.model.Loan;
 import com.example.demo.model.LoanApply;
-import com.example.demo.repository.EmployeeCardDetailsRepository;
-import com.example.demo.repository.EmployeeIssueDetailsRepository;
-import com.example.demo.repository.EmployeeRepository;
-import com.example.demo.repository.ItemMasterRepository;
-import com.example.demo.repository.LoanRepository;
+import com.example.demo.repositoryTests.EmployeeCardDetailsRepository;
+import com.example.demo.repositoryTests.EmployeeIssueDetailsRepository;
+import com.example.demo.repositoryTests.EmployeeRepository;
+import com.example.demo.repositoryTests.ItemMasterRepository;
+import com.example.demo.repositoryTests.LoanRepository;
 
 @Service
 public class EmployeeLoanService {

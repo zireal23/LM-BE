@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.EmployeeCardDetails;
-import com.example.demo.repository.EmployeeCardDetailsRepository;
+import com.example.demo.repositoryTests.EmployeeCardDetailsRepository;
 
 @Service
 public class EmployeeCardDetailsService {

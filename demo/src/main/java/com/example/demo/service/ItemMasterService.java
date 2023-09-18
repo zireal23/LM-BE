@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-import com.example.demo.model.Loan;
-import com.example.demo.repository.ItemMasterRepository;
+import com.example.demo.repositoryTests.ItemMasterRepository;
 
 @Service
 public class ItemMasterService {
