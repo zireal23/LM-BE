@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
 import com.example.demo.model.Login;
-import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repositoryTests.EmployeeRepository;
 
 @Service
 public class EmployeeService{

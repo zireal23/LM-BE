@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repositoryTests;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-import com.example.demo.model.Loan;
 
 
 public interface ItemMasterRepository extends JpaRepository<Item, Integer> {
