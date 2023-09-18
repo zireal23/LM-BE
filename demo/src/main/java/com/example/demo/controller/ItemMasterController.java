@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-import com.example.demo.model.Loan;
 import com.example.demo.service.ItemMasterService;
-import com.example.demo.service.LoanService;
 
 @RestController
 @CrossOrigin("*")

@@ -1,4 +1,4 @@
-package com.example.demo.test;
+package com.example.demo.controllerTests;
 
 
 import com.example.demo.controller.EmployeeController;
@@ -7,7 +7,6 @@ import com.example.demo.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,8 +21,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,7 +67,6 @@ public class EmployeeControllerTest {
         // Mock the service behavior
         //Mockito.when(employeeService.saveEmployee(employee)).thenReturn("User Saved");
         Mockito.when(employeeService.saveEmployee(Mockito.any(Employee.class))).thenReturn("User Saved");
-
         // Perform the POST request to save the employee
         mockMvc.perform(MockMvcRequestBuilders.post("/saveEmployee")
                 .contentType(MediaType.APPLICATION_JSON)

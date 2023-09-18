@@ -21,16 +21,16 @@ public class LoanService {
 		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
 		if(optional.isPresent())
 		{
-			result="User is existing";
+			result="Loan exists";
 			
 		}
 		else
 		{
 			obj = loanRepo.save(l);
 			if(obj!=null)
-			result="User saved";
+			result="Loan saved";
 			else
-			result="Registration failed";
+			result="Loan saving failed";
 		
 		}
 		return result;

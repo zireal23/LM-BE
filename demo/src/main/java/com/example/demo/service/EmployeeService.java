@@ -40,14 +40,20 @@ public class EmployeeService{
 		}
 		else
 		{
-			obj = employeeRepo.save(e);
-			if(obj!=null)
-			result="User saved";
-			else
-			result="Registration failed";
+			try {
+				obj = employeeRepo.save(e);
+			}
+			catch (IllegalArgumentException exception){
+				result = "Cannot save User";
+			}
+            result="User saved";
 		
 		}
 		return result;
+	}
+
+	public Optional<Employee> getEmployeeByID(String employeeID){
+        return employeeRepo.findById(employeeID);
 	}
 	
 	public String loginEmployee(Login l) {
@@ -68,6 +74,11 @@ public class EmployeeService{
 			result = " Login failed, user doesn't exist";
 		}
 		return result;
+	}
+	public List<Employee> getAllEmployees()
+	{
+		
+		return employeeRepo.findAll();
 	}
 	
 	public List<Employee> fetchEmployees(){
