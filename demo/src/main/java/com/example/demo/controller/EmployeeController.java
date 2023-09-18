@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,11 @@ public class EmployeeController{
 		String result = "";
 		result = employeeService.loginEmployee(l);
 		return result;
+	}
+	@GetMapping("/fetchEmployees")
+	public List<Employee>getAllEmployees()
+	{
+		return employeeService.getAllEmployees();
 	}
 	
 }
