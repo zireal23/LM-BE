@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
+import com.example.demo.model.Loan;
 import com.example.demo.model.Login;
 import com.example.demo.repository.EmployeeRepository;
 
@@ -67,5 +69,40 @@ public class EmployeeService{
 		}
 		return result;
 	}
+	
+	public List<Employee> fetchEmployees(){
+		return employeeRepo.findAll();
+	}
+	
+	public String editEmployee(Employee e) {
+		String result="";
+		
+		Employee obj = null;
+		Optional<Employee> optional = employeeRepo.findById(e.getEmployeeId());
+		obj = employeeRepo.save(e);
+		result = "Employee saved successfully";
+		return result;
+	}
+	
+	public String deleteEmployee(String employeeId) {
+		String result="";
+		
+		Employee obj = null;
+		
+//		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
+		
+		Optional<Employee> optional = employeeRepo.findById(employeeId);
+		//System.out.println(employeeId);
+		System.out.println(optional.isPresent());
+		if(optional.isPresent()) {
+			employeeRepo.deleteById(employeeId);
+			result = "Delted successfully";
+		}
+		else {
+			result = "Unable to delete";
+		}
+		return result;
+	}
+	
 	
 }

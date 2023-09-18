@@ -54,6 +54,36 @@ public class LoanService {
 		return loanRepo.getDistinctLoanTypes();
 	}
 	
+	public String editLoan(Loan l) {
+		String result="";
+		
+		Loan obj = null;
+		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
+		obj = loanRepo.save(l);
+		result = "Loan saved successfully";
+		return result;
+	}
+	
+	public String deleteLoan(int l) {
+		String result="";
+		
+		Loan obj = null;
+//		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
+		
+		Optional<Loan> optional = loanRepo.findById(l);
+		
+		if(optional.isPresent()) {
+			loanRepo.deleteById(l);
+			result = "Loan deleted successfully";
+		}
+		else {
+			result = "Unable to delete";
+		}
+		return result;
+	}
+	
+	
+	
 	
 }
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,10 +58,15 @@ public class LoanController{
 	
 	
 	@GetMapping("/fetchLoans")
-	public List<UserLoan> getAllLoans(@RequestParam String employeeId)
+	public List<UserLoan> getAllLoansofUser(@RequestParam String employeeId)
 	{
 		System.out.println(employeeId);
 		return loanService.getAllLoansofUser(employeeId);
+	}
+	
+	@GetMapping("/fetchAllLoans")
+	public List<Loan> getAllLoans(){
+		return loanService.getAllLoans();
 	}
 	
 	@GetMapping("/distinctLoanTypes")
@@ -74,6 +80,15 @@ public class LoanController{
 		return loanService.getLoanById(lno);
 	}
 	
+	@PutMapping("/editloanbyid")
+	public String editLoan(@RequestBody Loan l) {
+		return loanService.editLoan(l);
+	}
+	
+	@DeleteMapping("deleteloanbyid")
+	public String deleteLoan(@RequestParam int loanId) {
+		return loanService.deleteLoan(loanId);
+	}
 //    @PutMapping("/updateStudent/{rno}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("rno") int regno, @Valid @RequestBody Student stud) {
 //

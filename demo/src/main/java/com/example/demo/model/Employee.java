@@ -55,6 +55,9 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee")
 	private List<EmployeeCardDetails> employeecard;
+	
+	@Column(name = "isadmin")
+	private String isAdmin = "No";
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -102,6 +105,16 @@ public class Employee {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	
+
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 	public String getGender() {
