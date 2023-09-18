@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-import com.example.demo.repositoryTests.ItemMasterRepository;
+import com.example.demo.repository.ItemMasterRepository;
 
 @Service
 public class ItemMasterService {
@@ -22,16 +22,16 @@ public class ItemMasterService {
 		Optional<Item> optional = itemMasterRepo.findById(i.getItemId());
 		if(optional.isPresent())
 		{
-			result="User is existing";
+			result="Item exists";
 			
 		}
 		else
 		{
 			obj = itemMasterRepo.save(i);
 			if(obj!=null)
-			result="User saved";
+			result="Item saved";
 			else
-			result="Registration failed";
+			result="Item saving failed";
 		
 		}
 		return result;

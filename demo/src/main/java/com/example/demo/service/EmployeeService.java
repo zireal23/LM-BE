@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
 import com.example.demo.model.Login;
-import com.example.demo.repositoryTests.EmployeeRepository;
+import com.example.demo.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService{
@@ -39,14 +39,20 @@ public class EmployeeService{
 		}
 		else
 		{
-			obj = employeeRepo.save(e);
-			if(obj!=null)
-			result="User saved";
-			else
-			result="Registration failed";
+			try {
+				obj = employeeRepo.save(e);
+			}
+			catch (IllegalArgumentException exception){
+				result = "Cannot save User";
+			}
+            result="User saved";
 		
 		}
 		return result;
+	}
+
+	public Optional<Employee> getEmployeeByID(String employeeID){
+        return employeeRepo.findById(employeeID);
 	}
 	
 	public String loginEmployee(Login l) {

@@ -24,8 +24,13 @@ public class Loan {
 	
 	@OneToMany(mappedBy = "loan")
 	private List<EmployeeCardDetails> employeecarddetails;
-	
-//	@ManyToOne
+
+	public Loan(int loanId, String loanType, int duration) {
+		this.loanId = loanId;
+		this.loanType = loanType;
+		this.duration = duration;
+	}
+	//	@ManyToOne
 //	@JoinColumn(name = "employee_id")
 //	private Employee employee;
 //	
@@ -56,5 +61,6 @@ public class Loan {
 		this.loanType = loanType;
 	}
 
-
+	public Loan() {
+	}
 }

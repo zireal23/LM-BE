@@ -127,4 +127,18 @@ public class Employee {
 	public void setDateofbirth(Date dateofbirth) {
 		this.dateofbirth = dateofbirth;
 	}
+
+	public Employee(String employeeId, String employeeName, String designation, String department, String gender, Date dateofjoining, Date dateofbirth, String password) {
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.designation = designation;
+		this.department = department;
+		this.gender = gender;
+		this.dateofjoining = dateofjoining;
+		this.dateofbirth = dateofbirth;
+		this.password = password;
+	}
+
+	public Employee() {
+	}
 }

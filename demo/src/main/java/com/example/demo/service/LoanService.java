@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Loan;
 import com.example.demo.model.UserLoan;
-import com.example.demo.repositoryTests.LoanRepository;
+import com.example.demo.repository.LoanRepository;
 @Service
 public class LoanService {
 	@Autowired
@@ -21,16 +21,16 @@ public class LoanService {
 		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
 		if(optional.isPresent())
 		{
-			result="User is existing";
+			result="Loan exists";
 			
 		}
 		else
 		{
 			obj = loanRepo.save(l);
 			if(obj!=null)
-			result="User saved";
+			result="Loan saved";
 			else
-			result="Registration failed";
+			result="Loan saving failed";
 		
 		}
 		return result;
