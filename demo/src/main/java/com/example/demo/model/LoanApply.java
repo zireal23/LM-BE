@@ -51,6 +51,11 @@ public class LoanApply {
 		this.itemMake = itemMake;
 	}
 
-	
-	
+	public LoanApply(String employeeID, String itemCategory, String itemDescription, int itemValuation, String itemMake) {
+		this.employeeID = employeeID;
+		this.itemCategory = itemCategory;
+		this.itemDescription = itemDescription;
+		this.itemValuation = itemValuation;
+		this.itemMake = itemMake;
+	}
 }

@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
+import com.example.demo.model.Loan;
 import com.example.demo.model.Login;
-import com.example.demo.repositoryTests.EmployeeRepository;
+import com.example.demo.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService{
@@ -39,14 +40,20 @@ public class EmployeeService{
 		}
 		else
 		{
-			obj = employeeRepo.save(e);
-			if(obj!=null)
-			result="User saved";
-			else
-			result="Registration failed";
+			try {
+				obj = employeeRepo.save(e);
+			}
+			catch (IllegalArgumentException exception){
+				result = "Cannot save User";
+			}
+            result="User saved";
 		
 		}
 		return result;
+	}
+
+	public Optional<Employee> getEmployeeByID(String employeeID){
+        return employeeRepo.findById(employeeID);
 	}
 	
 	public String loginEmployee(Login l) {
@@ -73,5 +80,40 @@ public class EmployeeService{
 		
 		return employeeRepo.findAll();
 	}
+	
+	public List<Employee> fetchEmployees(){
+		return employeeRepo.findAll();
+	}
+	
+	public String editEmployee(Employee e) {
+		String result="";
+		
+		Employee obj = null;
+		Optional<Employee> optional = employeeRepo.findById(e.getEmployeeId());
+		obj = employeeRepo.save(e);
+		result = "Employee saved successfully";
+		return result;
+	}
+	
+	public String deleteEmployee(String employeeId) {
+		String result="";
+		
+		Employee obj = null;
+		
+//		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
+		
+		Optional<Employee> optional = employeeRepo.findById(employeeId);
+		//System.out.println(employeeId);
+		System.out.println(optional.isPresent());
+		if(optional.isPresent()) {
+			employeeRepo.deleteById(employeeId);
+			result = "Delted successfully";
+		}
+		else {
+			result = "Unable to delete";
+		}
+		return result;
+	}
+	
 	
 }

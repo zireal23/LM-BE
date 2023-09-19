@@ -1,6 +1,7 @@
 package com.example.demo.repositoryTests;
 
 import com.example.demo.model.Item;
+import com.example.demo.repository.ItemMasterRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class ItemMasterRepositoryTests {
 
     @Autowired
-    ItemMasterRepository itemRepo;
+    private ItemMasterRepository itemRepo;
 
 
     @Test

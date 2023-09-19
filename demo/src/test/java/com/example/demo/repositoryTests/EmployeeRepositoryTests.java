@@ -16,7 +16,7 @@ import java.sql.Date;
 public class EmployeeRepositoryTests {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private com.example.demo.repository.EmployeeRepository employeeRepository;
 
 
     @Test
