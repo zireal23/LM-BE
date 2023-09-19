@@ -23,11 +23,9 @@ public class ItemMasterService {
 		Optional<Item> optional = itemMasterRepo.findById(i.getItemId());
 		if(optional.isPresent())
 		{
-<<<<<<< HEAD
+
 			result="Item already exists";
-=======
-			result="Item exists";
->>>>>>> 8d2bf3541d99f230e3dd613709df72e84626870d
+
 			
 		}
 		else
