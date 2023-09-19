@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Loan;
 import com.example.demo.model.UserLoan;
-import com.example.demo.repositoryTests.LoanRepository;
+import com.example.demo.repository.LoanRepository;
 @Service
 public class LoanService {
 	@Autowired
@@ -21,16 +21,16 @@ public class LoanService {
 		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
 		if(optional.isPresent())
 		{
-			result="User is existing";
+			result="Loan exists";
 			
 		}
 		else
 		{
 			obj = loanRepo.save(l);
 			if(obj!=null)
-			result="User saved";
+			result="Loan saved";
 			else
-			result="Registration failed";
+			result="Loan saving failed";
 		
 		}
 		return result;
@@ -53,6 +53,36 @@ public class LoanService {
 	public List<String> getDistinctLoanTypes(){
 		return loanRepo.getDistinctLoanTypes();
 	}
+	
+	public String editLoan(Loan l) {
+		String result="";
+		
+		Loan obj = null;
+		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
+		obj = loanRepo.save(l);
+		result = "Loan saved successfully";
+		return result;
+	}
+	
+	public String deleteLoan(int l) {
+		String result="";
+		
+		Loan obj = null;
+//		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
+		
+		Optional<Loan> optional = loanRepo.findById(l);
+		
+		if(optional.isPresent()) {
+			loanRepo.deleteById(l);
+			result = "Loan deleted successfully";
+		}
+		else {
+			result = "Unable to delete";
+		}
+		return result;
+	}
+	
+	
 	
 	
 }

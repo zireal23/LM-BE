@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,10 +23,15 @@ public class Loan {
 	private int duration;
 	
 	
-	@OneToMany(mappedBy = "loan")
+	@OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
 	private List<EmployeeCardDetails> employeecarddetails;
-	
-//	@ManyToOne
+
+	public Loan(int loanId, String loanType, int duration) {
+		this.loanId = loanId;
+		this.loanType = loanType;
+		this.duration = duration;
+	}
+	//	@ManyToOne
 //	@JoinColumn(name = "employee_id")
 //	private Employee employee;
 //	
@@ -56,6 +62,7 @@ public class Loan {
 		this.loanType = loanType;
 	}
 
+<<<<<<< HEAD
 	public List<EmployeeCardDetails> getEmployeecarddetails() {
 		return employeecarddetails;
 	}
@@ -65,4 +72,8 @@ public class Loan {
 	}
 
 
+=======
+	public Loan() {
+	}
+>>>>>>> 8d2bf3541d99f230e3dd613709df72e84626870d
 }

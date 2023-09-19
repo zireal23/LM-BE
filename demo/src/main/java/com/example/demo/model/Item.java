@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Item {
+
+
 	@Id
 	@Column(name = "item_id", length = 20, nullable = false)
 	private int itemId;
@@ -29,7 +31,19 @@ public class Item {
 	
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<EmployeeIssueDetails> employeeissue;
-	
+
+	public Item(int itemId, String itemDescription, char itemStatus, String itemMake, String itemCategory, int itemValuation) {
+		this.itemId = itemId;
+		this.itemDescription = itemDescription;
+		this.itemStatus = itemStatus;
+		this.itemMake = itemMake;
+		this.itemCategory = itemCategory;
+		this.itemValuation = itemValuation;
+	}
+
+	public Item() {
+	}
+
 	public int getItemId() {
 		return itemId;
 	}
