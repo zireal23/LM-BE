@@ -35,6 +35,8 @@ public class LoanController{
 		return "Welcome";
 	}
 	
+	
+	
 	@PostMapping("/saveLoan")
 	public String saveLoan(@RequestBody Loan l) {
 		String result = "";
@@ -73,6 +75,8 @@ public class LoanController{
 	{
 		return loanService.getLoanById(lno);
 	}
+	
+	
 	
 //    @PutMapping("/updateStudent/{rno}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("rno") int regno, @Valid @RequestBody Student stud) {

@@ -56,5 +56,13 @@ public class Loan {
 		this.loanType = loanType;
 	}
 
+	public List<EmployeeCardDetails> getEmployeecarddetails() {
+		return employeecarddetails;
+	}
+
+	public void setEmployeecarddetails(List<EmployeeCardDetails> employeecarddetails) {
+		this.employeecarddetails = employeecarddetails;
+	}
+
 
 }

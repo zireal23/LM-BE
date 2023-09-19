@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.controller.EmployeeController;
+import org.junit.jupiter.api.Test;
+
+import com.example.demo.controller.LoanController;
 import com.example.demo.model.Employee;
+import com.example.demo.model.Loan;
 import com.example.demo.service.EmployeeService;
+import com.example.demo.service.LoanService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -29,62 +34,47 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(EmployeeController.class)
 @ExtendWith(SpringExtension.class)
-public class EmployeeControllerTest {
+public class LoanControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private EmployeeService employeeService;
-
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@MockBean
+    private LoanService loanService;
+	
     private Validator validator;
-
+    
     @BeforeEach
     public void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
-
-    @Test
-    public void testGetValidEmployee() throws Exception {
-        // Create a valid employee instance
-        Employee employee = new Employee();
-        employee.setEmployeeId("RS101");
-        employee.setEmployeeName("xyz");
-        employee.setDesignation("programmer");
-        employee.setDepartment("cse");
-        employee.setGender("m");
-        employee.setDateofjoining(Date.valueOf("2023-09-07"));
-        employee.setDateofbirth(Date.valueOf("2002-04-15"));
-        employee.setPassword("1234");
- 
-//        String allEmployees;
-//		allEmployees.add(employee);
-        // Validate the employee
-        //Set<javax.validation.ConstraintViolation<Employee>> violations = validator.validate(employee);
-
-        // Ensure there are no validation errors
-        //assertTrue(violations.isEmpty());
-
-        // Mock the service behavior
-        //Mockito.when(employeeService.saveEmployee(employee)).thenReturn("User Saved");
-        Mockito.when(employeeService.saveEmployee(Mockito.any(Employee.class))).thenReturn("User Saved");
+	
+	@Test
+	void testSaveLoans() throws Exception{
+		Loan loan = new Loan();
+		loan.setLoanId(1001);
+		loan.setLoanType("Furniture");
+		loan.setDuration(2);
+		
+		Mockito.when(loanService.saveLoan(Mockito.any(Loan.class))).thenReturn("Loan details Saved");
         // Perform the POST request to save the employee
-        mockMvc.perform(MockMvcRequestBuilders.post("/saveEmployee")
+        mockMvc.perform(MockMvcRequestBuilders.post("/saveLoan")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"employeeId\":\"RS101\",\"employeeName\":\"xyz\",\"designation\":\"programmer\",\"department\":\"cse\",\"gender\":\"m\",\"dateofjoining\":\"2023-09-07\",\"dateofbirth\":\"2002-04-15\",\"password\":\"1234\"}")
+                .content("{\"loanId\":\"1001\",\"loanType\":\"Furniture\",\"duration\":\"2\"}")
         )
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("User Saved"));
-    }
-
-    @Test
-    public void testSaveInvalidEmployee() throws Exception {
+                .andExpect(MockMvcResultMatchers.content().string("Loan Data Saved"));
+    
+	}
+	
+	@Test
+    public void testInvalidLoanCard() throws Exception {
         // Create an invalid employee instance (missing required fields)
-        Employee employee = new Employee();
+        Loan loan = new Loan();
 
         // Validate the employee
-        Set<javax.validation.ConstraintViolation<Employee>> violations = validator.validate(employee);
+        Set<ConstraintViolation<Loan>> violations = validator.validate(loan);
 
         // Ensure there are validation errors
         assertFalse(violations.isEmpty());
@@ -92,8 +82,9 @@ public class EmployeeControllerTest {
         // Perform the POST request to save the employee (should fail due to validation)
         mockMvc.perform(MockMvcRequestBuilders.post("/saveEmployee")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"employeeId\":\"\",\"employeeName\":\"\",\"designation\":\"\",\"department\":\"\",\"gender\":\"\",\"dateofjoining\":\"\",\"dateofbirth\":\"\",\"password\":\"\"}")
+                .content("{\"loanId\":\"\",\"duration\":\"\",\"loanType\":\"\"}")
         )
                 .andExpect(MockMvcResultMatchers.status().isBadRequest()); // Expect a 400 Bad Request
     }
+
 }

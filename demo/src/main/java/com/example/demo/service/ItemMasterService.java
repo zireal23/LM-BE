@@ -22,14 +22,14 @@ public class ItemMasterService {
 		Optional<Item> optional = itemMasterRepo.findById(i.getItemId());
 		if(optional.isPresent())
 		{
-			result="User is existing";
+			result="Item already exists";
 			
 		}
 		else
 		{
 			obj = itemMasterRepo.save(i);
 			if(obj!=null)
-			result="User saved";
+			result="Item saved";
 			else
 			result="Registration failed";
 		
