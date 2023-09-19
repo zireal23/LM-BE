@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
+import com.example.demo.model.Loan;
 import com.example.demo.service.ItemMasterService;
 
 @RestController
@@ -69,6 +72,16 @@ public class ItemMasterController{
 	public List<IssueItem> getAllItems(@RequestParam String employeeId)
 	{
 		return itemMasterService.getAllItemsofUser(employeeId);
+	}
+	
+	@PutMapping("/edititembyid")
+	public String editLoan(@RequestBody Item l) {
+		return itemMasterService.editItem(l);
+	}
+	
+	@DeleteMapping("deleteitembyid")
+	public String deleteLoan(@RequestParam int itemId) {
+		return itemMasterService.deleteItem(itemId);
 	}
 	
 //    @PutMapping("/updateStudent/{rno}")

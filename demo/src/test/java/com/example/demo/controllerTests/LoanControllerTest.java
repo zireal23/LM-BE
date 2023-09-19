@@ -1,7 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.controllerTests;
 
 import org.junit.jupiter.api.Test;
 
+import com.example.demo.controller.EmployeeController;
 import com.example.demo.controller.LoanController;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Loan;
