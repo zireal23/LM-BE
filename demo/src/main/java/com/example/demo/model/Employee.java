@@ -55,6 +55,9 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee")
 	private List<EmployeeCardDetails> employeecard;
+	
+	@Column(name = "isadmin")
+	private String isAdmin = "No";
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -104,6 +107,16 @@ public class Employee {
 		this.password = password;
 	}
 
+	
+
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public String getGender() {
 		return gender;
 	}
@@ -126,5 +139,19 @@ public class Employee {
 
 	public void setDateofbirth(Date dateofbirth) {
 		this.dateofbirth = dateofbirth;
+	}
+
+	public Employee(String employeeId, String employeeName, String designation, String department, String gender, Date dateofjoining, Date dateofbirth, String password) {
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.designation = designation;
+		this.department = department;
+		this.gender = gender;
+		this.dateofjoining = dateofjoining;
+		this.dateofbirth = dateofbirth;
+		this.password = password;
+	}
+
+	public Employee() {
 	}
 }
