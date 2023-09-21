@@ -80,10 +80,7 @@ public class LoanController{
 		return loanService.getLoanById(lno);
 	}
 	
-<<<<<<< HEAD
-	
-	
-=======
+
 	@PutMapping("/editloanbyid")
 	public String editLoan(@RequestBody Loan l) {
 		return loanService.editLoan(l);
@@ -93,7 +90,7 @@ public class LoanController{
 	public String deleteLoan(@RequestParam int loanId) {
 		return loanService.deleteLoan(loanId);
 	}
->>>>>>> 8d2bf3541d99f230e3dd613709df72e84626870d
+
 //    @PutMapping("/updateStudent/{rno}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("rno") int regno, @Valid @RequestBody Student stud) {
 //
