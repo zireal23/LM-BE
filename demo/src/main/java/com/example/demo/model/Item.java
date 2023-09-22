@@ -11,6 +11,9 @@ import javax.persistence.Id;
 //import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Item {
 
@@ -30,6 +33,7 @@ public class Item {
 	private int itemValuation;
 	
 	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<EmployeeIssueDetails> employeeissue;
 
 	public Item(int itemId, String itemDescription, char itemStatus, String itemMake, String itemCategory, int itemValuation) {

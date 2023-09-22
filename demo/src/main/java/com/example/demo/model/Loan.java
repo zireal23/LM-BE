@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Loan {
 
@@ -24,6 +27,7 @@ public class Loan {
 	
 	
 	@OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<EmployeeCardDetails> employeecarddetails;
 
 	public Loan(int loanId, String loanType, int duration) {
