@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,7 +27,7 @@ public class Loan {
 	private int duration;
 	
 	
-	@OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "loan")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<EmployeeCardDetails> employeecarddetails;
 
