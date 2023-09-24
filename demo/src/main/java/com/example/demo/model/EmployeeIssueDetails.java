@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class EmployeeIssueDetails {
@@ -37,9 +39,11 @@ public class EmployeeIssueDetails {
 	private Item item;
 	
 	@Column(name = "issue_date")
+	@Temporal(TemporalType.DATE)
 	private Date issueDate;
 	
 	@Column(name="return_date")
+	@Temporal(TemporalType.DATE)
 	private Date returnDate;
 	
 	public Date getReturnDate() {
