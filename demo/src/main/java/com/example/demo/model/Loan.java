@@ -6,10 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class Loan {
@@ -23,7 +27,8 @@ public class Loan {
 	private int duration;
 	
 	
-	@OneToMany(mappedBy = "loan", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "loan")
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<EmployeeCardDetails> employeecarddetails;
 
 	public Loan(int loanId, String loanType, int duration) {

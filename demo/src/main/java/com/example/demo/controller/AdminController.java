@@ -13,7 +13,7 @@ import com.example.demo.model.Login;
 import com.example.demo.service.AdminService;
 
 @RestController
-//@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 public class AdminController {
 	@Autowired
 	AdminService adminService;

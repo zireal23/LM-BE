@@ -10,6 +10,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Employee {
 	@Id
@@ -51,9 +54,11 @@ public class Employee {
 	private String password;
 
 	@OneToMany(mappedBy = "employee")
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<EmployeeIssueDetails> employeeissue;
 
 	@OneToMany(mappedBy = "employee")
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<EmployeeCardDetails> employeecard;
 	
 	@Column(name = "isadmin")
