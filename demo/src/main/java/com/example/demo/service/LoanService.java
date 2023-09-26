@@ -26,11 +26,14 @@ public class LoanService {
 		}
 		else
 		{
-			obj = loanRepo.save(l);
-			if(obj!=null)
-			result="Loan saved";
-			else
-			result="Loan saving failed";
+			try{
+				obj = loanRepo.save(l);
+				result="Loan saved";
+			}
+			catch(IllegalArgumentException Exception){
+				result="Loan not saved";
+			}
+
 		
 		}
 		return result;
@@ -59,8 +62,13 @@ public class LoanService {
 		
 		Loan obj = null;
 		Optional<Loan> optional = loanRepo.findById(l.getLoanId());
-		obj = loanRepo.save(l);
-		result = "Loan saved successfully";
+		try{
+			obj = loanRepo.save(l);
+			result="Loan updated";
+		}
+		catch(IllegalArgumentException Exception){
+			result="Loan not updated";
+		}
 		return result;
 	}
 	
@@ -73,8 +81,14 @@ public class LoanService {
 		Optional<Loan> optional = loanRepo.findById(l);
 		
 		if(optional.isPresent()) {
-			loanRepo.deleteById(l);
-			result = "Loan deleted successfully";
+			try{
+				loanRepo.deleteById(l);
+				result = "Loan deleted successfully";
+			}
+			catch(IllegalArgumentException Exception){
+				result = "Loan not deleted";
+			}
+
 		}
 		else {
 			result = "Unable to delete";

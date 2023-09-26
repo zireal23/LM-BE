@@ -90,8 +90,15 @@ public class EmployeeService{
 		
 		Employee obj = null;
 		Optional<Employee> optional = employeeRepo.findById(e.getEmployeeId());
-		obj = employeeRepo.save(e);
-		result = "Employee saved successfully";
+		try{
+			obj = employeeRepo.save(e);
+			result = "Employee updated successfully";
+		}
+		catch(IllegalArgumentException Exception){
+			result = "Employee not updated successfully";
+		}
+
+
 		return result;
 	}
 	
@@ -106,8 +113,13 @@ public class EmployeeService{
 		//System.out.println(employeeId);
 		System.out.println(optional.isPresent());
 		if(optional.isPresent()) {
-			employeeRepo.deleteById(employeeId);
-			result = "Delted successfully";
+			try{
+				employeeRepo.deleteById(employeeId);
+				result = "Deleted successfully";
+			}
+			catch(IllegalArgumentException Exception) {
+				result = "Delete Unsuccessful";
+			}
 		}
 		else {
 			result = "Unable to delete";
