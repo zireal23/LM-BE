@@ -12,6 +12,8 @@ import com.example.demo.model.Login;
 import com.example.demo.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
+
 @Service
 public class EmployeeService{
 	
@@ -83,7 +85,10 @@ public class EmployeeService{
 	}
 	
 	public List<Employee> fetchEmployees(){
-		return employeeRepo.findAll();
+		List<Employee> employees = employeeRepo.findAll();
+		if(employees.isEmpty())
+			throw new NoResultException();
+		return employees;
 	}
 	
 	public String editEmployee(Employee e) {

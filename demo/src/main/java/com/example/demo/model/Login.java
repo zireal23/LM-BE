@@ -1,7 +1,11 @@
 package com.example.demo.model;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Login {
+
 	private String employeeId;
+
 	private String password;
 	
 	public String getEmployeeId() {

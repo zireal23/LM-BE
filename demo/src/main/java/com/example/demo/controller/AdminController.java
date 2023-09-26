@@ -13,7 +13,7 @@ import com.example.demo.model.Login;
 import com.example.demo.service.AdminService;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 public class AdminController {
 	@Autowired
 	AdminService adminService;
@@ -21,6 +21,7 @@ public class AdminController {
 	@PostMapping("/loginadmin")
 	public String login(@RequestBody Login l) {
 		String result = "";
+		System.out.println("gg");
 		result = adminService.loginAdmin(l);
 		return result;
 	}
