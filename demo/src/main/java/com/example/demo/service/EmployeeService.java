@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Loan;
 import com.example.demo.model.Login;
+import com.example.demo.model.UserdashboardDetails;
 import com.example.demo.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -59,14 +60,21 @@ public class EmployeeService{
         return employeeRepo.findById(employeeID);
 	}
 	
-	public String loginEmployee(Login l) {
-		String result = "";
+	public UserdashboardDetails loginEmployee(Login l) {
+		UserdashboardDetails userdashdetails = null;
 		Employee e = null;
 		Optional<Employee> optional = employeeRepo.findById(l.getEmployeeId());
+		String employeeName = "";
+		String department = "";
+		String designation = "";
+		String result = "";
 		if(optional.isPresent()) {
 			e = optional.get();
 //			e.setEmployeeId(l.getUsername()); 
 			if(e.getPassword().equals(l.getPassword())) {
+				employeeName = e.getEmployeeName();
+				department = e.getDepartment();
+				designation = e.getDesignation();
 				result = "Login Successful";
 			}
 			else {
@@ -76,8 +84,12 @@ public class EmployeeService{
 		else {
 			result = " Login failed, user doesn't exist";
 		}
-		return result;
+		
+		userdashdetails = new UserdashboardDetails(employeeName, designation, department, result);
+		
+		return userdashdetails;
 	}
+	
 	public List<Employee> getAllEmployees()
 	{
 		

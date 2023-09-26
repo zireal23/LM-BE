@@ -28,8 +28,6 @@ public class EmployeeCardDetails {
 	@NotNull // Ensures that employee is not null
 	private Employee employee;
 
-
-
 	@Column(name = "card_issue_date")
 	@NotNull // Ensures that card_issue_date is not null
 	@Past(message = "Card issue date must be in the past") // Ensures that card_issue_date is a past date

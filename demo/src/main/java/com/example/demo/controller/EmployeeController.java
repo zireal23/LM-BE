@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Loan;
 import com.example.demo.model.Login;
+import com.example.demo.model.UserdashboardDetails;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -57,8 +58,8 @@ public class EmployeeController{
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestBody Login l) {
-		String result = "";
+	public UserdashboardDetails login(@RequestBody Login l) {
+		UserdashboardDetails result = null;
 		result = employeeService.loginEmployee(l);
 		return result;
 	}
