@@ -10,9 +10,7 @@ import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,7 +29,7 @@ public class Item {
 	private String itemDescription;
 
 	@Column(name = "item_status", nullable = false)
-	@NotBlank // Ensures that itemStatus is not blank (not an empty string)
+	@NotNull // Ensures that itemStatus is not blank (not an empty string)
 	private char itemStatus;
 
 	@Column(name = "item_make", length = 40)

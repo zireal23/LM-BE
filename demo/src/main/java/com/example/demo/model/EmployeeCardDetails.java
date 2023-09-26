@@ -28,9 +28,7 @@ public class EmployeeCardDetails {
 	@NotNull // Ensures that employee is not null
 	private Employee employee;
 
-	@ManyToOne
-	@JoinColumn(name = "loan_id")
-	private Loan loan;
+
 
 	@Column(name = "card_issue_date")
 	@NotNull // Ensures that card_issue_date is not null

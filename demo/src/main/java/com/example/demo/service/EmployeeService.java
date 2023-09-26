@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import com.example.demo.model.Employee;
 import com.example.demo.model.Loan;
 import com.example.demo.model.Login;
 import com.example.demo.repository.EmployeeRepository;
+import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeService{

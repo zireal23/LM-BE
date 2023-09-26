@@ -29,6 +29,9 @@ public class EmployeeController{
 	private EmployeeService employeeService;
 	private Login logincreds;
 
+	public EmployeeController() {
+	}
+
 	@GetMapping("/showemp")
 	public String showMessage() {
 		return "Welcome";
