@@ -65,6 +65,6 @@ public class EmployeeLoanServiceTests {
         System.out.println(result);
 
         // Assert that the result is as expected
-        assertEquals("Card table updated Issue Table updated", result);
+        assertEquals("card Saved Item Issue Details saved", result);
     }
 }

@@ -21,6 +21,8 @@ public class AdminService {
 		Optional<Employee> optional = adminRepo.findById(l.getEmployeeId());
 		if(optional.isPresent()) {
 			e = optional.get();
+			//e = optional.get();
+	       
 //			e.setEmployeeId(l.getUsername());
 			
 				if(e.getPassword().equals(l.getPassword()) && e.getIsAdmin().equals("Yes")) {
