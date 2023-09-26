@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class EmployeeCardDetails {
 
@@ -45,7 +47,8 @@ public class EmployeeCardDetails {
 	public void setLoan(Loan loan) {
 		this.loan = loan;
 	}
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "loan_id")
 	private Loan loan;
