@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class EmployeeCardDetails {
@@ -18,6 +23,22 @@ public class EmployeeCardDetails {
 	@GeneratedValue // This generates an auto-incremented primary key
 	private int id;
 
+	@ManyToOne
+	@JoinColumn(name = "employee_id")
+	@NotNull // Ensures that employee is not null
+	private Employee employee;
+
+	@ManyToOne
+	@JoinColumn(name = "loan_id")
+	private Loan loan;
+
+	@Column(name = "card_issue_date")
+	@NotNull // Ensures that card_issue_date is not null
+	@Past(message = "Card issue date must be in the past") // Ensures that card_issue_date is a past date
+	private Date card_issue_date;
+
+	// Getter and Setter methods...
+
 	public int getId() {
 		return id;
 	}
@@ -25,10 +46,6 @@ public class EmployeeCardDetails {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "employee_id")
-	private Employee employee;
 
 	public Employee getEmployee() {
 		return employee;
@@ -45,7 +62,8 @@ public class EmployeeCardDetails {
 	public void setLoan(Loan loan) {
 		this.loan = loan;
 	}
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "loan_id")
 	private Loan loan;
@@ -57,7 +75,4 @@ public class EmployeeCardDetails {
 	public void setCard_issue_date(Date card_issue_date) {
 		this.card_issue_date = card_issue_date;
 	}
-
-	private Date card_issue_date;
-
 }

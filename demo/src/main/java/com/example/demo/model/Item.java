@@ -10,6 +10,9 @@ import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,20 +23,31 @@ public class Item {
 
 	@Id
 	@Column(name = "item_id", length = 20, nullable = false)
+	@PositiveOrZero // Ensures that itemId is a positive or zero value
 	private int itemId;
+
 	@Column(name = "item_description", length = 40)
+	@Size(max = 40) // Limits the maximum length of itemDescription to 40 characters
 	private String itemDescription;
+
 	@Column(name = "item_status", nullable = false)
+	@NotBlank // Ensures that itemStatus is not blank (not an empty string)
 	private char itemStatus;
+
 	@Column(name = "item_make", length = 40)
+	@Size(max = 40) // Limits the maximum length of itemMake to 40 characters
 	private String itemMake;
+
 	@Column(name = "item_category", length = 20)
+	@Size(max = 20) // Limits the maximum length of itemCategory to 20 characters
 	private String itemCategory;
-	@Column(name = "item_valuation", length = 10)
+
+	@Column(name = "item_valuation")
+	@PositiveOrZero // Ensures that itemValuation is a positive or zero value
 	private int itemValuation;
-	
-	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@OnDelete(action=OnDeleteAction.CASCADE)
+
+	@OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<EmployeeIssueDetails> employeeissue;
 
 	public Item(int itemId, String itemDescription, char itemStatus, String itemMake, String itemCategory, int itemValuation) {

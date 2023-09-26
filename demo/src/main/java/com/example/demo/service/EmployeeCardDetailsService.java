@@ -22,11 +22,15 @@ public class EmployeeCardDetailsService {
 			result="Employee card is existing";
 		}
 		else {
-			obj = detailsRepo.save(card);
-			if(obj!=null)
-				result="Employee Card Deails Saved";
-			else
-				result="Employee Card Deails Failed";
+			try{
+				obj = detailsRepo.save(card);
+				result = "Employee Card Details Saved";
+			}
+			catch (IllegalArgumentException exception){
+				result="Employee Card Details not Saved";
+			}
+
+
 		}
 		
 		return result;

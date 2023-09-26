@@ -17,6 +17,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Employee {
 	@Id
 	@Column(name = "employeeid")
+	@NotEmpty(message = "Employee ID is a required field")
 	private String employeeId;
 
 	@Column(name = "employeename")
