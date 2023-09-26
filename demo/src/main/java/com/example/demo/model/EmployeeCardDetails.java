@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class EmployeeCardDetails {
 
@@ -60,6 +62,11 @@ public class EmployeeCardDetails {
 	public void setLoan(Loan loan) {
 		this.loan = loan;
 	}
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "loan_id")
+	private Loan loan;
 
 	public Date getCard_issue_date() {
 		return card_issue_date;
