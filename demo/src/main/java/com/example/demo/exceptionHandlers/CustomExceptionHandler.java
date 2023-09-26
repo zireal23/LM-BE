@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.NoResultException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,5 +37,11 @@ public class CustomExceptionHandler {
 		Map<String, String> resp = new HashMap<>();
 		resp.put("error", "ArrayIndexOutOfBoundsException occurred");
 		return new ResponseEntity<>(resp, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	@ExceptionHandler(NoResultException.class)
+	public ResponseEntity<Map<String, String>> handleResourceNotFoundException(NoResultException ex) {
+		Map<String, String> resp = new HashMap<>();
+		resp.put("error", ex.getMessage());
+		return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
 	}
 }

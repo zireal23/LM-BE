@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 @Entity
 public class EmployeeIssueDetails {
@@ -32,14 +34,17 @@ public class EmployeeIssueDetails {
 	
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
+	@NotNull
 	private Employee employee;
 	
 	@ManyToOne
 	@JoinColumn(name = "item_id")
+	@NotNull
 	private Item item;
 	
 	@Column(name = "issue_date")
 	@Temporal(TemporalType.DATE)
+	@Past(message = "Issue date must be in the past") // Ensures that issueDate is a past date
 	private Date issueDate;
 	
 	@Column(name="return_date")
