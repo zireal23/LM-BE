@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-import com.example.demo.model.Loan;
 import com.example.demo.service.ItemMasterService;
 
 @RestController
@@ -68,10 +67,10 @@ public class ItemMasterController{
 		return itemMasterService.getItemFromCategoryAndMake(category, make);
 	}
 	
-	@GetMapping("/fetchItemsofUser")
+	@GetMapping("/fetchItemsOfUser")
 	public List<IssueItem> getAllItems(@RequestParam String employeeId)
 	{
-		return itemMasterService.getAllItemsofUser(employeeId);
+		return itemMasterService.getAllItemsOfUser(employeeId);
 	}
 	
 	@PutMapping("/edititembyid")

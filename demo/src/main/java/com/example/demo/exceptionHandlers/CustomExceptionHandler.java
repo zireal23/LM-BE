@@ -6,6 +6,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.persistence.NoResultException;
 import java.util.HashMap;
@@ -41,7 +42,20 @@ public class CustomExceptionHandler {
 	@ExceptionHandler(NoResultException.class)
 	public ResponseEntity<Map<String, String>> handleResourceNotFoundException(NoResultException ex) {
 		Map<String, String> resp = new HashMap<>();
+		resp.put("error", "No data found");
+		return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(HttpClientErrorException.NotFound.class)
+	public ResponseEntity<Map<String, String>> notFoundException(HttpClientErrorException.NotFound ex) {
+		Map<String, String> resp = new HashMap<>();
 		resp.put("error", ex.getMessage());
 		return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException ex) {
+		Map<String, String> resp = new HashMap<>();
+		resp.put("error", ex.getMessage());
+		return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
 	}
 }

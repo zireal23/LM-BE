@@ -4,12 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import com.example.demo.model.Employee;
 import com.example.demo.model.Loan;
 import com.example.demo.model.Login;
+import com.example.demo.model.UserdashboardDetails;
 import com.example.demo.repository.EmployeeRepository;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.NoResultException;
 
 @Service
 public class EmployeeService{
@@ -56,14 +60,21 @@ public class EmployeeService{
         return employeeRepo.findById(employeeID);
 	}
 	
-	public String loginEmployee(Login l) {
-		String result = "";
+	public UserdashboardDetails loginEmployee(Login l) {
+		UserdashboardDetails userdashdetails = null;
 		Employee e = null;
 		Optional<Employee> optional = employeeRepo.findById(l.getEmployeeId());
+		String employeeName = "";
+		String department = "";
+		String designation = "";
+		String result = "";
 		if(optional.isPresent()) {
 			e = optional.get();
 //			e.setEmployeeId(l.getUsername()); 
 			if(e.getPassword().equals(l.getPassword())) {
+				employeeName = e.getEmployeeName();
+				department = e.getDepartment();
+				designation = e.getDesignation();
 				result = "Login Successful";
 			}
 			else {
@@ -73,8 +84,12 @@ public class EmployeeService{
 		else {
 			result = " Login failed, user doesn't exist";
 		}
-		return result;
+		
+		userdashdetails = new UserdashboardDetails(employeeName, designation, department, result);
+		
+		return userdashdetails;
 	}
+	
 	public List<Employee> getAllEmployees()
 	{
 		
@@ -82,7 +97,10 @@ public class EmployeeService{
 	}
 	
 	public List<Employee> fetchEmployees(){
-		return employeeRepo.findAll();
+		List<Employee> employees = employeeRepo.findAll();
+		if(employees.isEmpty())
+			throw new NoResultException();
+		return employees;
 	}
 	
 	public String editEmployee(Employee e) {
@@ -90,8 +108,15 @@ public class EmployeeService{
 		
 		Employee obj = null;
 		Optional<Employee> optional = employeeRepo.findById(e.getEmployeeId());
-		obj = employeeRepo.save(e);
-		result = "Employee saved successfully";
+		try{
+			obj = employeeRepo.save(e);
+			result = "Employee updated successfully";
+		}
+		catch(IllegalArgumentException Exception){
+			result = "Employee not updated successfully";
+		}
+
+
 		return result;
 	}
 	
@@ -106,8 +131,13 @@ public class EmployeeService{
 		//System.out.println(employeeId);
 		System.out.println(optional.isPresent());
 		if(optional.isPresent()) {
-			employeeRepo.deleteById(employeeId);
-			result = "Delted successfully";
+			try{
+				employeeRepo.deleteById(employeeId);
+				result = "Deleted successfully";
+			}
+			catch(IllegalArgumentException Exception) {
+				result = "Delete Unsuccessful";
+			}
 		}
 		else {
 			result = "Unable to delete";

@@ -53,14 +53,9 @@ public class EmployeeLoanService {
 
 		EmployeeCardDetails cardResponseFromSaveProcedure = empCardRepo.save(cardDetails);
 		// Need better exception handling here
-		if (cardResponseFromSaveProcedure == null) {
-			resultString = "card Not Saved";
-
-		} else {
-			System.out.println("Employee Card Details saved");
-			resultString = "card Saved";
-		}
-		EmployeeIssueDetails issueDetails = new EmployeeIssueDetails();
+        System.out.println("Employee Card Details saved");
+        resultString = "card Saved";
+        EmployeeIssueDetails issueDetails = new EmployeeIssueDetails();
 		int loanDuration = loan.getDuration();
 		// Need to get rid of the legacy java.sql.date type
 		// Using this because then will need to drop the table and insert dummy data
@@ -79,12 +74,8 @@ public class EmployeeLoanService {
 
 		EmployeeIssueDetails issueDetailsResponseFromSaveProcedure = empIssueDetailsRepo.save(issueDetails);
 
-		if (issueDetailsResponseFromSaveProcedure == null) {
-			resultString += " " + "Item Issue Details not saved";
-		} else {
-			resultString += " " + "Item Issue Details saved";
-		}
+        resultString += " " + "Item Issue Details saved";
 
-		return resultString;
+        return resultString;
 	}
 }

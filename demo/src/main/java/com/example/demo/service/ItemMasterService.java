@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.IssueItem;
 import com.example.demo.model.Item;
-import com.example.demo.model.Loan;
 import com.example.demo.repository.ItemMasterRepository;
+
+import javax.persistence.NoResultException;
 
 @Service
 public class ItemMasterService {
@@ -30,11 +31,14 @@ public class ItemMasterService {
 		}
 		else
 		{
-			obj = itemMasterRepo.save(i);
-			if(obj!=null)
-			result="Item saved";
-			else
-			result="Item saving failed";
+			try{
+				obj = itemMasterRepo.save(i);
+				result="Item saved";
+			}
+			catch(IllegalArgumentException Exception){
+				result="Item not saved";
+			}
+
 		
 		}
 		return result;
@@ -50,14 +54,23 @@ public class ItemMasterService {
 		return itemMasterRepo.findById(ino).get();
 	}
 	public List<String> getItemMakeFromCategory(String category){
-		return itemMasterRepo.getItemMakeFromCategory(category);
+		List<String> itemMakes = itemMasterRepo.getItemMakeFromCategory(category);
+		if(itemMakes.isEmpty())
+			throw new NoResultException();
+		return itemMakes;
 	}
 	public List<Item> getItemFromCategoryAndMake(String category, String make){
-		return itemMasterRepo.getItemFromCategoryAndMake(category, make);
+		List<Item> items = itemMasterRepo.getItemFromCategoryAndMake(category, make);
+		if(items.isEmpty())
+			throw new NoResultException();
+		return items;
 	}
 	
-	public List<IssueItem> getAllItemsofUser(String employeeId){
-		return itemMasterRepo.findItemsByEmployeeId(employeeId);
+	public List<IssueItem> getAllItemsOfUser(String employeeId){
+		List<IssueItem> itemsOfUser = itemMasterRepo.findItemsByEmployeeId(employeeId);
+		if(itemsOfUser.isEmpty())
+			throw new NoResultException();
+		return itemsOfUser;
 	}
 	
 	public String editItem(Item l) {
@@ -65,8 +78,14 @@ public class ItemMasterService {
 		
 		Item obj = null;
 		Optional<Item> optional = itemMasterRepo.findById(l.getItemId());
-		obj = itemMasterRepo.save(l);
-		result = "Loan saved successfully";
+		try{
+			obj = itemMasterRepo.save(l);
+			result = "Loan saved successfully";
+		}
+		catch (IllegalArgumentException Exception){
+			result = "Loan not saved";
+		}
+
 		return result;
 	}
 	
@@ -79,8 +98,14 @@ public class ItemMasterService {
 		Optional<Item> optional = itemMasterRepo.findById(l);
 		
 		if(optional.isPresent()) {
-			itemMasterRepo.deleteById(l);
-			result = "Item deleted successfully";
+			try{
+				itemMasterRepo.deleteById(l);
+
+			}
+			catch(IllegalArgumentException Exception){
+				result = "Item not deleted";
+			}
+
 		}
 		else {
 			result = "Unable to delete";
