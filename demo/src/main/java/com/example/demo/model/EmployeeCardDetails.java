@@ -62,7 +62,7 @@ public class EmployeeCardDetails {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "loan_id")
-	//private Loan loan;
+	private Loan loan;
 
 	public Date getCard_issue_date() {
 		return card_issue_date;
