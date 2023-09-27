@@ -54,10 +54,16 @@ public class ItemMasterService {
 		return itemMasterRepo.findById(ino).get();
 	}
 	public List<String> getItemMakeFromCategory(String category){
-		return itemMasterRepo.getItemMakeFromCategory(category);
+		List<String> itemMakes = itemMasterRepo.getItemMakeFromCategory(category);
+		if(itemMakes.isEmpty())
+			throw new NoResultException();
+		return itemMakes;
 	}
 	public List<Item> getItemFromCategoryAndMake(String category, String make){
-		return itemMasterRepo.getItemFromCategoryAndMake(category, make);
+		List<Item> items = itemMasterRepo.getItemFromCategoryAndMake(category, make);
+		if(items.isEmpty())
+			throw new NoResultException();
+		return items;
 	}
 	
 	public List<IssueItem> getAllItemsOfUser(String employeeId){

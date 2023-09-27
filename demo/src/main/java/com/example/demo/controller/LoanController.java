@@ -60,7 +60,6 @@ public class LoanController{
 	@GetMapping("/fetchLoans")
 	public List<UserLoan> getAllLoansofUser(@RequestParam String employeeId)
 	{
-		System.out.println(employeeId);
 		return loanService.getAllLoansofUser(employeeId);
 	}
 	

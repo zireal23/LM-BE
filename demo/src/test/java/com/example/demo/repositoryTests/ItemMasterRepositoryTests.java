@@ -89,7 +89,7 @@ public class ItemMasterRepositoryTests {
 
     @Test
     public void itemRepositoryGetItemMakeFromCategoryReturnsListOfItemMakes() {
-        //Arrange
+        /* Arrange */
         Item item1 = new Item();
         item1.setItemId(16316);
         item1.setItemCategory("furniture");
@@ -99,21 +99,24 @@ public class ItemMasterRepositoryTests {
         item1.setItemStatus('Y');
 
         Item item2 = new Item();
-        item1.setItemId(16316);
-        item1.setItemCategory("furniture");
-        item1.setItemMake("plastic");
-        item1.setItemDescription("chair");
-        item1.setItemValuation(100);
-        item1.setItemStatus('Y');
+        item2.setItemId(16317);
+        item2.setItemCategory("furniture");
+        item2.setItemMake("plastic");
+        item2.setItemDescription("chair");
+        item2.setItemValuation(100);
+        item2.setItemStatus('Y');
 
 
         //Act
         itemRepo.save(item1);
         itemRepo.save(item2);
-        List<String> itemMakes = itemRepo.getItemMakeFromCategory("furniture");
 
+
+
+        List<String> itemMakes = itemRepo.getItemMakeFromCategory("furniture");
+        System.out.println(itemMakes);
         //Assert
-        Assertions.assertEquals(itemMakes.size(), 2);
+        Assertions.assertEquals(2,itemMakes.size());
     }
 
     @Test
