@@ -98,8 +98,7 @@ public class EmployeeService{
 	
 	public List<Employee> fetchEmployees(){
 		List<Employee> employees = employeeRepo.findAll();
-		if(employees.isEmpty())
-			throw new NoResultException();
+		
 		return employees;
 	}
 	

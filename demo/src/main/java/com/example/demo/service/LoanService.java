@@ -45,15 +45,18 @@ public class LoanService {
 	public List<Loan> getAllLoans()
 	{
 		List<Loan> loans = loanRepo.findAll();
-		if(loans.isEmpty())
-			throw new NoResultException();
+//		if(loans.isEmpty()) {
+//			System.out.println("Array empty");
+//			throw new NoResultException();
+//		}
+			
 		return loans;
 	}
 	
 	public List<UserLoan> getAllLoansofUser(String employeeId){
 		List<UserLoan> loans = loanRepo.findLoansByEmployeeId(employeeId);
-		if(loans.isEmpty())
-			throw new NoResultException();
+//		if(loans.isEmpty())
+//			throw new NoResultException();
 		return loans;
 	}
 	
@@ -64,8 +67,8 @@ public class LoanService {
 	}
 	public List<String> getDistinctLoanTypes(){
 		List<String> loanTypes = loanRepo.getDistinctLoanTypes();
-		if(loanTypes.isEmpty())
-			throw new NoResultException();
+//		if(loanTypes.isEmpty())
+//			throw new NoResultException();
 		return loanTypes;
 	}
 	

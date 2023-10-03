@@ -55,21 +55,17 @@ public class ItemMasterService {
 	}
 	public List<String> getItemMakeFromCategory(String category){
 		List<String> itemMakes = itemMasterRepo.getItemMakeFromCategory(category);
-		if(itemMakes.isEmpty())
-			throw new NoResultException();
 		return itemMakes;
 	}
 	public List<Item> getItemFromCategoryAndMake(String category, String make){
 		List<Item> items = itemMasterRepo.getItemFromCategoryAndMake(category, make);
-		if(items.isEmpty())
-			throw new NoResultException();
+
 		return items;
 	}
 	
 	public List<IssueItem> getAllItemsOfUser(String employeeId){
 		List<IssueItem> itemsOfUser = itemMasterRepo.findItemsByEmployeeId(employeeId);
-		if(itemsOfUser.isEmpty())
-			throw new NoResultException();
+
 		return itemsOfUser;
 	}
 	

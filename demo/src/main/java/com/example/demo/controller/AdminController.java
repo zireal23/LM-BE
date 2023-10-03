@@ -21,8 +21,9 @@ public class AdminController {
 	@PostMapping("/loginadmin")
 	public String login(@RequestBody Login l) {
 		String result = "";
-		System.out.println("gg");
+		
 		result = adminService.loginAdmin(l);
+		System.out.println(result);
 		return result;
 	}
 	
